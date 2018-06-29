@@ -260,10 +260,15 @@ select
 from schedule s
 where gubun like 'Y';
 
-select count(s1.sche_date) 1월, count(s2.sche_date) 2월
+select count(s1.sche_date) "1월", count(s2.sche_date) "2월",
+       count(s3.sche_date) "3월", count(s4.sche_date) "4월",
+       count(s5.sche_date) "5월", count(s6.sche_date) "6월",
+       count(s7.sche_date) "7월", count(s8.sche_date) "8월",
+       count(s9.sche_date) "9월", count(s10.sche_date) "10월",
+       count(s11.sche_date) "11월", count(s12.sche_date) "12월"
 from schedule s1, schedule s2, schedule s3, schedule s4,
      schedule s5, schedule s6, schedule s7, schedule s8,
-     schedule s9, schedule s10, schedule s11, schedule s12,
+     schedule s9, schedule s10, schedule s11, schedule s12
 where (s1.sche_date between 20120101 and 20120131) and
       (s2.sche_date between 20120201 and 20120228) and
       (s3.sche_date between 20120301 and 20120331) and
@@ -277,6 +282,18 @@ where (s1.sche_date between 20120101 and 20120131) and
       (s11.sche_date between 20121101 and 20121130) and
       (s12.sche_date between 20121231 and 20121231)
       ;
+      
+select count(s5.sche_date) "5월", count(s7.sche_date) "7월"
+from schedule s
+    join schedule s7
+        on s7.sche_date like s.sche_date
+    join schedule s5
+        on s5.sche_date like s.sche_date
+where (s5.sche_date between 20120501 and 20120531) and
+      (s7.sche_date between 20120701 and 20120731);
+
+select sche_date
+from schedule;
 
       
 
